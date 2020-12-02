@@ -16,6 +16,7 @@
       <v-tab>Genre</v-tab>
       <v-tab>Popular</v-tab>
       <v-tab>Country</v-tab>
+      <v-tab>Year</v-tab>
     </v-tabs>
 
     <v-main>

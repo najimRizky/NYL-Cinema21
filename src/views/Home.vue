@@ -1,13 +1,16 @@
 <template>
   <div class="home">
+    <TrendingHome/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import TrendingHome from '@/components/TrendingHome.vue'
 
 export default {
   name: 'Home',
-  
+  components:{
+    TrendingHome
+  }
 }
 </script>

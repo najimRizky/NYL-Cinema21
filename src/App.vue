@@ -1,60 +1,40 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar  absolute color="#252525" dark>
       <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+        <h2>NYL Cinema 21</h2>
       </div>
-
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+      <v-btn text to="/aboutus" >
+        <span class="mr-2 mt-1">About Us</span>
+        <v-icon>mdi-account-group</v-icon>
       </v-btn>
+      <br>
     </v-app-bar>
+    <v-tabs color="black" absolute class="mt-16" background-color="#FACD36">
+      <v-tab>Home</v-tab>
+      <v-tab>Genre</v-tab>
+      <v-tab>Popular</v-tab>
+      <v-tab>Country</v-tab>
+    </v-tabs>
 
     <v-main>
-      <HelloWorld/>
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
 
 export default {
   name: 'App',
-
-  components: {
-    HelloWorld,
-  },
 
   data: () => ({
     //
   }),
 };
 </script>
+
+<style scoped>
+  
+</style>

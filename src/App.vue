@@ -101,9 +101,9 @@ export default {
   }
   .expanding-search{
     position: absolute;
+    top: 40px;
     transition: 0.3s;
     /*animation: dropdown 0.2s;*/
-    z-index: +0;
   }
   @keyframes dropdown{
     0%{

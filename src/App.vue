@@ -1,56 +1,59 @@
 <template>
   <v-app>
-    <v-app-bar absolute color="#252525" dark>
-      <div class="d-flex align-center">
-        <h2 @click="gotoHome()" style="cursor: pointer">NYL Cinema 21</h2>
-      </div>
-      <v-spacer></v-spacer>
-      <v-btn text @click="openSearch()">
-        <v-icon class="mt-1" >mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn text to="/about" >
-        <span class="mt-1 ">About Us </span>
-        <v-icon>mdi-account-group</v-icon>
-      </v-btn>
-      <br>
-    </v-app-bar>
-    <v-tabs color="black"  class="mt-15 " background-color="#FACD36">
-      <v-tab to="/">Home</v-tab>
-      <v-menu v-if="more.length" bottom left>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn text class="align-self-center" v-bind="attrs" v-on="on" color="#3E3E3E">
-            genre
-            <v-icon right>
-              mdi-menu-down
-            </v-icon>
-          </v-btn>
-        </template>
-        <v-list class="grey lighten-3">
-          <v-list-item v-for="item in more" :key="item" @click="addItem(item)">
-            {{ item }}
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <v-tab>Popular</v-tab>
-      <v-tab>Country</v-tab>
-      <v-menu v-if="more.length" bottom left>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn text class="align-self-center" v-bind="attrs" v-on="on" color="#3E3E3E">
-            year
-            <v-icon right>
-              mdi-menu-down
-            </v-icon>
-          </v-btn>
-        </template>
-        <v-list class="grey lighten-3">
-          <v-list-item v-for="item in year" :key="item" @click="addItem(item)">
-            {{ item }}
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </v-tabs>
-    <v-text-field class="expanding-search" placeholder="Search" filled dense color="grey" prepend-inner-icon="mdi-magnify" 
-    v-on:keyup.enter="gotoSearch()" v-model="searchKeyword" style="margin-bottom: -25px;"></v-text-field>
+    <div>
+      <v-app-bar absolute color="#252525" dark>
+        <div class="d-flex align-center">
+          <h2 @click="gotoHome()" style="cursor: pointer">NYL Cinema 21</h2>
+        </div>
+        <v-spacer></v-spacer>
+        <v-btn text @click="openSearch()">
+          <v-icon class="mt-1" >mdi-magnify</v-icon>
+        </v-btn>
+        <v-btn text to="/about" >
+          <span class="mt-1 ">About Us </span>
+          <v-icon>mdi-account-group</v-icon>
+        </v-btn>
+        <br>
+      </v-app-bar>
+      <v-tabs color="black"  class="mt-15 " background-color="#FACD36">
+        <v-tab to="/">Home</v-tab>
+        <v-menu v-if="more.length" bottom left>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn text class="align-self-center" v-bind="attrs" v-on="on" color="#3E3E3E">
+              genre
+              <v-icon right>
+                mdi-menu-down
+              </v-icon>
+            </v-btn>
+          </template>
+          <v-list class="grey lighten-3">
+            <v-list-item v-for="item in more" :key="item" @click="addItem(item)">
+              {{ item }}
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-tab>Popular</v-tab>
+        <v-tab>Country</v-tab>
+        <v-menu v-if="more.length" bottom left>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn text class="align-self-center" v-bind="attrs" v-on="on" color="#3E3E3E">
+              year
+              <v-icon right>
+                mdi-menu-down
+              </v-icon>
+            </v-btn>
+          </template>
+          <v-list class="grey lighten-3">
+            <v-list-item v-for="item in year" :key="item" @click="addItem(item)">
+              {{ item }}
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-tabs>
+      <v-text-field class="expanding-search" placeholder="Search" filled dense color="grey" prepend-inner-icon="mdi-magnify" 
+      v-on:keyup.enter="gotoSearch()" v-model="searchKeyword" style="margin-bottom: -25px;"></v-text-field>
+
+    </div>
     <v-main> 
       <router-view></router-view>
     </v-main>
@@ -100,8 +103,7 @@ export default {
     background: rgb(255, 255, 255);
   }
   .expanding-search{
-    position: absolute;
-    top: 40px;
+    width: 100%;
     transition: 0.3s;
     /*animation: dropdown 0.2s;*/
   }

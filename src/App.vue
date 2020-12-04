@@ -88,6 +88,8 @@ export default {
     },
     gotoSearch(){
       this.$router.push({name: 'Search', params: {keyword: this.searchKeyword}})
+      this.searchKeyword= '';
+      this.searchIndicator= false;
     }
   }
 };

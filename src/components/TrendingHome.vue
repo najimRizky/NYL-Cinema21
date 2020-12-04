@@ -6,7 +6,7 @@
           <h1 style="font-weight: normal"> Trending Now!</h1>
           <v-col cols="9">
             <v-carousel v-model="model" height="330px" width="100px" style="border-radius: 10px" show-arrows-on-hover cycle hide-delimiters>
-              <v-carousel-item  v-for="item in dataApi.slice(0,19)" v-bind:key="item.id" @click="getId(item.id)" style="cursor: pointer">
+              <v-carousel-item  v-for="item in dataApi" v-bind:key="item.id" @click="getId(item.id)" style="cursor: pointer">
                 <v-sheet height="100%" tile :style="{'background-image': `url(${'https://image.tmdb.org/t/p/original/'+ item.backdrop_path})`, 'background-position' : 'center' , 'background-size': '100%'}">
                   <v-row class="" justify="center" >
                     <div class="display-1" style="background-color: rgba(0,0,0,0.7); padding: 3px 4px; min-width: 100%; position: absolute; bottom: 0px;" >

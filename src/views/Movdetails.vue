@@ -5,7 +5,7 @@
                 <v-container id="movDetails" >
                     <v-row >
                         <v-col md="5" xs="12">
-                            <v-img v-bind:src="'https://image.tmdb.org/t/p/w500'+ dataMovie.poster_path " width="400px"/>    
+                            <v-img v-bind:src="'https://image.tmdb.org/t/p/w500'+ dataMovie.poster_path" width="400px"/>    
                         </v-col>
                         <v-col md="6" xs="12" class="ml-3">
                             <v-row>
@@ -15,6 +15,7 @@
                                 <v-chip class=" ma-1" color="white" label outlined v-for="item in dataMovie.genres" v-bind:key="item.id"><v-icon left> mdi-label</v-icon>{{item.name}}</v-chip>
                             </v-row>
                             <v-row>
+                                <!--v-rating v-model="dataMovie.vote_average" length="10" color="yellow darken-2" background-color="white" dense readonly size="26"></v-rating> <b class="mt-1">{{dataMovie.vote_average}}/10 ({{dataMovie.vote_count}})</b-->
                                 <span><v-icon color="yellow" class="mb-1">mdi-star-box</v-icon> {{dataMovie.vote_average}}/10 From {{dataMovie.vote_count}} Users </span>
                             </v-row>
                             <v-row>

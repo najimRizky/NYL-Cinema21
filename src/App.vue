@@ -50,7 +50,7 @@
           </v-list>
         </v-menu>
       </v-tabs>
-      <v-text-field class="expanding-search" placeholder="Search" filled dense color="grey" prepend-inner-icon="mdi-magnify" 
+      <v-text-field class="expanding-search" placeholder="Search" v-if="searchIndicator" filled dense color="grey" prepend-inner-icon="mdi-magnify" 
       v-on:keyup.enter="gotoSearch()" v-model="searchKeyword" style="margin-bottom: -25px;"></v-text-field>
 
     </div>

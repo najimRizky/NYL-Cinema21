@@ -2,7 +2,6 @@
     <div>
         <v-container fluid>
             <v-row>
-                +1
                 <v-col lg="2" md="3" sm="4" cols="6" v-for="item in dataPopular.results" v-bind:key="item.id" >
                     <v-card height="580px">
                         <v-img v-bind:src="getPoster(item.poster_path)" height="350px" ></v-img>

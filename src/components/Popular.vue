@@ -1,7 +1,6 @@
 <template>
     <div>
         <v-container fluid>
-            tes123
             <v-row>
                 <v-col lg="2" md="3" sm="4" cols="6" v-for="item in dataPopular.results" v-bind:key="item.id" >
                     <v-card height="580px">

@@ -32,7 +32,7 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-tab>Popular</v-tab>
+        <v-tab to="/popular/1">Popular</v-tab>
         <v-tab>Country</v-tab>
         <v-menu v-if="more.length" bottom left>
           <template v-slot:activator="{ on, attrs }">
@@ -90,7 +90,12 @@ export default {
       }
     },
     gotoSearch(){
-      this.$router.push({name: 'Search', params: {keyword: this.searchKeyword}})
+      if(this.$route.name == 'Search'){
+        this.$router.push({name: 'Search', params: {keyword: this.searchKeyword, page: 1}})
+        window.location.reload()
+      }else{
+        this.$router.push({name: 'Search', params: {keyword: this.searchKeyword, page: 1}})
+      }
       this.searchKeyword= '';
       this.searchIndicator= false;
     }

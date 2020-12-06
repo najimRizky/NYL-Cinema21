@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Movdetails from '../views/Movdetails.vue'
 import Search from '../views/Search.vue'
+import Popular from '../views/Popularview.vue'
 
 Vue.use(VueRouter)
 
@@ -24,9 +25,14 @@ const routes = [
     component: Movdetails
   },
   {
-    path: '/search/:keyword',
+    path: '/search/:keyword/:page',
     name: 'Search',
     component: Search
+  },
+  {
+    path: '/popular/:page',
+    name: 'Popular',
+    component: Popular
   }
 ]
 

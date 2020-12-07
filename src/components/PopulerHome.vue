@@ -15,7 +15,7 @@
                                 </v-hover>
                                 
                             </template>
-                            <span >{{item.title}}</span>
+                            <p>{{item.title}}</p>
                         </v-tooltip>
                         <v-tooltip top>
                             <template v-slot:activator="{ on, attrs }">

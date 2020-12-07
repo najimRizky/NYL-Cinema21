@@ -30,7 +30,7 @@
                             <template v-slot:activator="{ on, attrs }">
                                 <span v-bind="attrs" v-on="on" style="position: relative; top: -21.9em; float: right; background: rgba(0,0,0,0.7); color: white; padding: 9px 15px; border-radius: 5px; margin-bottom: -20px"><v-icon color="white" >mdi-chart-line-variant</v-icon>{{item.popularity}} </span>
                             </template>
-                            <span>Popularity</span>
+                            <p>Popularity</p>
                         </v-tooltip>
                         <v-card-title style="font-size: 18px; width: 100%; padding-top: 0px; cursor: pointer" @click="gotoDetails(item.id)">{{getTitle(item.title)}}</v-card-title>
                         <v-card-subtitle>

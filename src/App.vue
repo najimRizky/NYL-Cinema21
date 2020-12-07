@@ -17,9 +17,11 @@
       </v-app-bar>
       <v-tabs color="black"  class="mt-15 " background-color="#FACD36">
         <v-tab to="/">Home</v-tab>
-        <v-menu v-if="more.length" bottom left>
+        <v-tab to="/popular/1">Popular</v-tab>
+        <v-tab to="/filtersearch">Filter Search</v-tab>
+        <v-menu v-if="genre.length" bottom left>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn text class="align-self-center" v-bind="attrs" v-on="on" color="#3E3E3E">
+            <v-btn text class="align-self-center" v-bind="attrs" v-on="on" color="black">
               genre
               <v-icon right>
                 mdi-menu-down
@@ -27,16 +29,29 @@
             </v-btn>
           </template>
           <v-list class="grey lighten-3">
-            <v-list-item v-for="item in more" :key="item" @click="addItem(item)">
+            <v-list-item v-for="item in genre" :key="item" @click="gotoGenre(item)">
               {{ item }}
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-tab to="/popular/1">Popular</v-tab>
-        <v-tab>Country</v-tab>
-        <v-menu v-if="more.length" bottom left>
+        <v-menu v-if="country.length" bottom left>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn text class="align-self-center" v-bind="attrs" v-on="on" color="#3E3E3E">
+            <v-btn text class="align-self-center" v-bind="attrs" v-on="on" color="black">
+              country
+              <v-icon right>
+                mdi-menu-down
+              </v-icon>
+            </v-btn>
+          </template>
+          <v-list class="grey lighten-3">
+            <v-list-item v-for="item in country" :key="item" @click="gotoCountry(item)">
+              {{ item }}
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-menu v-if="year.length" bottom left>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn text class="align-self-center" v-bind="attrs" v-on="on" color="black">
               year
               <v-icon right>
                 mdi-menu-down
@@ -44,7 +59,7 @@
             </v-btn>
           </template>
           <v-list class="grey lighten-3">
-            <v-list-item v-for="item in year" :key="item" @click="addItem(item)">
+            <v-list-item v-for="item in year" :key="item" @click="gotoYear(item)">
               {{ item }}
             </v-list-item>
           </v-list>
@@ -66,8 +81,9 @@ export default {
   name: 'App',
 
   data: () => ({
-    more: ['Action', 'Horror', 'Family', 'Romance', 'Animation','Others..'],
-    year: ['2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', 'Others..'],
+    genre: ['Action', 'Horror', 'Family', 'Romance', 'Animation','Others'],
+    year: ['2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', 'Others'],
+    country: ['USA','South Korea', 'Thailand', 'China', 'Russia', 'Japan', 'India', 'Others'],
     searchIndicator: false,
     searchKeyword: '',
   }),
@@ -98,6 +114,18 @@ export default {
       }
       this.searchKeyword= '';
       this.searchIndicator= false;
+    },
+    gotoYear(val){
+      if(val == 'Others') this.$router.push('/filtersearch')
+      else this.$router.push({name: 'Years', params: {year: val, page: 1}})
+    },
+    gotoGenre(val){
+      if(val == 'Others') this.$router.push('/filtersearch')
+      else this.$router.push({name: 'Genres', params: {genre: val, page: 1}})
+    },
+    gotoCountry(val){
+      if(val == 'Others') this.$router.push('/filtersearch')
+      else this.$router.push({name: 'Countries', params: {country: val, page: 1}})
     }
   }
 };

@@ -5,6 +5,11 @@ import About from '../views/About.vue'
 import Movdetails from '../views/Movdetails.vue'
 import Search from '../views/Search.vue'
 import Popular from '../views/Popularview.vue'
+import Years from '../views/Yearview.vue'
+import Countries from '../views/Countryview.vue'
+import Genres from '../views/Genreview.vue'
+import Filtersearch from '../views/Filtersearch.vue'
+import Filterresults from '../views/Filterresults.vue'
 
 Vue.use(VueRouter)
 
@@ -33,7 +38,32 @@ const routes = [
     path: '/popular/:page',
     name: 'Popular',
     component: Popular
-  }
+  },
+  {
+    path: '/years/:year/:page',
+    name: 'Years',
+    component: Years
+  },
+  {
+    path: '/genres/:genre/:page',
+    name: 'Genres',
+    component: Genres
+  },
+  {
+    path: '/countries/:country/:page',
+    name: 'Countries',
+    component: Countries
+  },
+  {
+    path: '/filterresults/',
+    name: 'Filterresults',
+    component: Filterresults
+  },
+  {
+    path: '/filtersearch/',
+    name: 'Filtersearch',
+    component: Filtersearch
+  },
 ]
 
 const router = new VueRouter({

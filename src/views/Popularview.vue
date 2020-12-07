@@ -7,12 +7,9 @@
 <script>
 import Popular from '../components/Popular.vue'
     export default {
-    components: { 
-        Popular 
-    },
+        components: { 
+            Popular 
+        },
     }
 </script>
 
-<style lang="scss" scoped>
-
-</style>

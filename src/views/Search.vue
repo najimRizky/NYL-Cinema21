@@ -114,7 +114,3 @@ Vue.use(VueAxios, axios)
         }
     }
 </script>
-
-<style scoped>
-
-</style>

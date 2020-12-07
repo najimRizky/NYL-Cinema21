@@ -1,24 +1,21 @@
 <template>
     <div>
-        <v-container>
-            <v-col cols="12" align="center">
-                <h2>Popular Movies</h2>
-            </v-col>
+        <v-container >
             <v-row>
-                <v-col xs="12" align="center">
-                    <v-pagination v-model="pageNow" :length="page_length" v-if="page_length > 1" circle @input="gotoPage(pageNow)"></v-pagination>
+                <v-col cols="12" align="center">
+                        <h2>Popular Movies</h2>
+                        <v-btn text color="blue" style="float: right" to="/popular/1">Show All>></v-btn>
                 </v-col>
-            </v-row>
-        </v-container>
-        <v-container fluid>
-            <v-row>
-                <v-col lg="2" md="3" sm="4" cols="6" v-for="item in dataPopular.results" v-bind:key="item.id" >
-                    <v-card height="580px">
+                <v-col lg="2" md="3 " sm="4" cols="6" v-for="item in dataPopular.results" v-bind:key="item.id" >
+                    <v-card height="440px">
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on, attrs }">
-                                <v-img  v-bind="attrs" v-on="on" v-bind:src="getPoster(item.poster_path)" height="350px" @click="gotoDetails(item.id)" style="cursor: pointer"></v-img>
+                                <v-hover v-slot="{ hover }">
+                                    <v-img :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }" v-bind="attrs" v-on="on" v-bind:src="getPoster(item.poster_path)" height="320px" @click="gotoDetails(item.id)" style="cursor: pointer"></v-img>
+                                </v-hover>
+                                
                             </template>
-                            <span>{{item.title}}</span>
+                            <span >{{item.title}}</span>
                         </v-tooltip>
                         <v-tooltip top>
                             <template v-slot:activator="{ on, attrs }">
@@ -26,34 +23,28 @@
                             </template>
                             <span>Rating</span>
                         </v-tooltip>
-                        <v-tooltip top>
+                        <!--v-tooltip top>
                             <template v-slot:activator="{ on, attrs }">
-                                <span v-bind="attrs" v-on="on" style="position: relative; top: -21.9em; float: right; background: rgba(0,0,0,0.7); color: white; padding: 9px 15px; border-radius: 5px; margin-bottom: -20px"><v-icon color="white" >mdi-chart-line-variant</v-icon>{{item.popularity}} </span>
+                                <span v-bind="attrs" v-on="on" style="position: relative; top: -21.9em; float: right; background: rgba(0,0,0,0.7); color: white; padding: 9px 15px; border-radius: 5px; margin-bottom: -40px"><v-icon color="white" >mdi-chart-line-variant</v-icon>{{item.popularity}} </span>
                             </template>
                             <span>Popularity</span>
-                        </v-tooltip>
-                        <v-card-title style="font-size: 18px; width: 100%; padding-top: 0px; cursor: pointer" @click="gotoDetails(item.id)">{{getTitle(item.title)}}</v-card-title>
-                        <v-card-subtitle>
-                            {{item.release_date.substring(0,4)}}
-                        </v-card-subtitle>
-                        <v-row class="ml-3">
-                            <span id="genre"  class="mx-1" v-for="genre in item.genre_ids.slice(0,3)" v-bind:key="genre">{{getGenre(genre)}}</span>
-                        </v-row>
+                        </v-tooltip-->
+                            
+                        <v-card-title style="font-size: 14px; width: 100%; padding-top: 0px; cursor: pointer; margin-top: -20px" @click="gotoDetails(item.id)">{{getTitle(item.title)}} </v-card-title>
+                        <v-card-subtitle style="font-size: 13px;">
+                            ({{item.release_date.substring(0,4)}})
+                        </v-card-subtitle >
+                        <!--v-row class="ml-3">
+                            <span style="font-size: 10px" id="genre"  class="mx-1" v-for="genre in item.genre_ids.slice(0,3)" v-bind:key="genre">{{getGenre(genre)}}</span>
+                        </v-row-->
                         <v-divider class="mx-4"></v-divider>
-                        <v-card-actions>
+                        <!--v-card-actions>
                             <v-col cols="12" align="center">
                                 <v-btn color="yellow darken-3" rounded small dark @click="gotoDetails(item.id)" >See Details</v-btn>
                             </v-col>
-                        <v-spacer></v-spacer>
-                        </v-card-actions>
+                            <v-spacer></v-spacer>
+                        </v-card-actions-->
                     </v-card>
-                </v-col>
-            </v-row>
-        </v-container>
-        <v-container>
-            <v-row>
-                <v-col xs="12" align="center">
-                    <v-pagination v-model="pageNow" :length="page_length" v-if="page_length > 1" circle @input="gotoPage(pageNow)"></v-pagination>
                 </v-col>
             </v-row>
         </v-container>
@@ -67,20 +58,16 @@ import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
     export default {
         data: () => ({
-            pageNow: null,
             genreApi: undefined,
             dataPopular: undefined,
             urlApi: null,
-            page_length: null,
         }),
         mounted(){
-            this.pageNow = parseInt(this.$route.params.page)
-            this.urlApi = 'https://api.themoviedb.org/3/movie/popular?api_key=d7acd0104a45104a47c1fb7ba1304230&language=en-US&page='+ this.pageNow; 
+            this.urlApi = 'https://api.themoviedb.org/3/movie/popular?api_key=d7acd0104a45104a47c1fb7ba1304230&language=en-US&page=1'
             Vue.axios.get(this.urlApi)
             .then((resp) => {
                     this.dataPopular = resp.data
                     console.log(this.dataPopular)
-                    this.page_length = this.dataPopular.total_pages
                 })
             Vue.axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=d7acd0104a45104a47c1fb7ba1304230&language=en-US')
             .then((hasil) => {
@@ -100,10 +87,6 @@ Vue.use(VueAxios, axios)
                         return this.genreApi.genres[i].name 
                     }
                 }
-            },
-            gotoPage(value){
-                this.$router.push({name: 'Popular', params: {page: value}})
-                window.location.reload()
             },
             gotoDetails(value){
                 this.$router.push({name: 'Movdetails', params: {id: value}})

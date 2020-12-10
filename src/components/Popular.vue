@@ -30,14 +30,14 @@
                             <template v-slot:activator="{ on, attrs }">
                                 <span v-bind="attrs" v-on="on" style="position: relative; top: -21.9em; float: right; background: rgba(0,0,0,0.7); color: white; padding: 9px 15px; border-radius: 5px; margin-bottom: -20px"><v-icon color="white" >mdi-chart-line-variant</v-icon>{{item.popularity}} </span>
                             </template>
-                            <p>Popularity</p>
+                            <span>Popularity</span>
                         </v-tooltip>
-                        <v-card-title style="font-size: 18px; width: 100%; padding-top: 0px; cursor: pointer" @click="gotoDetails(item.id)">{{getTitle(item.title)}}</v-card-title>
-                        <v-card-subtitle>
+                        <p style="font-size: 18px;font-weight: 500; width: 100%; padding: 0px 10px; margin-bottom: -5px; margin-top:-10px;cursor: pointer" @click="gotoDetails(item.id)">{{getTitle(item.title)}}</p>
+                        <v-card-subtitle v-if="item.release_date!=null">
                             {{item.release_date.substring(0,4)}}
                         </v-card-subtitle>
                         <v-row class="ml-3">
-                            <span id="genre"  class="mx-1" v-for="genre in item.genre_ids.slice(0,3)" v-bind:key="genre">{{getGenre(genre)}}</span>
+                            <span id="genre"  class="mx-1" v-for="genre in item.genre_ids.slice(0,3)" v-bind:key="genre" @click="gotoGenre(genre)">{{getGenre(genre)}}</span>
                         </v-row>
                         <v-divider class="mx-4"></v-divider>
                         <v-card-actions>
@@ -108,6 +108,16 @@ Vue.use(VueAxios, axios)
             gotoDetails(value){
                 this.$router.push({name: 'Movdetails', params: {id: value}})
             },
+            gotoGenre(value){
+                console.log(this.genreApi)
+                for(var i=0; i<this.genreApi.genres.length; i++){
+                    if(this.genreApi.genres[i].id == value){
+                        value = this.genreApi.genres[i].name
+                        break;
+                    }
+                }
+                this.$router.push({name: 'Genres', params: {genre: value, page: 1, sort: 'popularity.desc'}})
+            }
         }
     }
 </script>

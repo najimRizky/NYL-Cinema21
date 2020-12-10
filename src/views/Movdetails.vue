@@ -1,18 +1,18 @@
 <template>
     <div>
-        <div v-if="dataMovie.backdrop_path == null || dataMovie.poster_path == null" :style="{'background-image': `url(${'https://picsum.photos/1280/720'})`, 'background-size' : '100%' }">                   
+        <!--div v-if="dataMovie.backdrop_path == null || dataMovie.poster_path == null" :style="{'background-image': `url(${'https://picsum.photos/1280/720'})`, 'background-size' : '100%' }">                   
             <div :style="{'backdrop-filter': 'blur(10px)', 'background-color': 'rgba(0,0,0,0.4)'}">
                 <v-container id="movDetails" >
                     <v-row >
                         <v-col md="5" xs="12">
-                            <v-img v-bind:src="'https://picsum.photos/400/600/'" width="400px" />    
+                            <v-img v-bind:src="getPoster(dataMovie.poster_path)" width="400px" />    
                         </v-col>
                         <v-col md="6" xs="12" class="ml-3">
                             <v-row>
                                 <h2>{{dataMovie.title}}</h2> <h2 v-if="dataMovie.release_date != null" class="ml-2" style="font-weight: normal">({{dataMovie.release_date.substring(0, 4)}})</h2>
                             </v-row>
                             <v-row class="mb-2" v-if="dataMovie.genres != null">
-                                <v-chip class=" ma-1" color="white" label outlined v-for="item in dataMovie.genres" v-bind:key="item.id"><v-icon left> mdi-label</v-icon>{{item.name}}</v-chip>
+                                <v-chip class=" ma-1" color="white" label outlined v-for="item in dataMovie.genres" v-bind:key="item.id" @click="gotoGenre(item.name)"><v-icon left> mdi-label</v-icon>{{item.name}}</v-chip>
                             </v-row>
                             <v-row v-if="dataMovie.vote_average != null">
                                 <span><v-icon color="yellow" class="mb-1">mdi-star-box</v-icon> {{dataMovie.vote_average}}/10 From {{dataMovie.vote_count}} Users </span>
@@ -37,21 +37,21 @@
                     </v-row>
                 </v-container>
             </div>
-        </div>
+        </div-->
 
-        <div v-else :style="{'background-image': `url(${'https://image.tmdb.org/t/p/w500'+ dataMovie.backdrop_path})`, 'background-size' : '100%' }">                   
+        <div :style="{'background-image': getBackdrop(dataMovie.backdrop_path), 'background-size' : '100%' }">                   
             <div :style="{'backdrop-filter': 'blur(10px)', 'background-color': 'rgba(0,0,0,0.4)'}">
                 <v-container id="movDetails" >
                     <v-row >
                         <v-col md="5" xs="12">
-                            <v-img v-bind:src="'https://image.tmdb.org/t/p/w500'+ dataMovie.poster_path" width="400px" />    
+                            <v-img v-bind:src="getPoster(dataMovie.poster_path)" />    
                         </v-col>
                         <v-col md="6" xs="12" class="ml-3">
                             <v-row>
                                 <h2>{{dataMovie.title}}</h2> <h2 class="ml-2" style="font-weight: normal">({{dataMovie.release_date.substring(0, 4)}})</h2>
                             </v-row>
                             <v-row class="mb-2" v-if="dataMovie.genres != null">
-                                <v-chip class=" ma-1" color="white" label outlined v-for="item in dataMovie.genres" v-bind:key="item.id"><v-icon left> mdi-label</v-icon>{{item.name}}</v-chip>
+                                <v-chip class=" ma-1" color="white" label outlined v-for="item in dataMovie.genres" v-bind:key="item.id" @click="gotoGenre(item.name)"><v-icon left> mdi-label</v-icon>{{item.name}}</v-chip>
                             </v-row>
                             <v-row v-if="dataMovie.vote_average != null">
                                 <span><v-icon color="yellow" class="mb-1">mdi-star-box</v-icon> {{dataMovie.vote_average}}/10 From {{dataMovie.vote_count}} Users </span>
@@ -130,7 +130,14 @@ Vue.use(VueAxios, axios)
         },
         methods:{
             getPoster(val){
-                return 'https://image.tmdb.org/t/p/w500'+ val
+                if(val != null) return  'https://image.tmdb.org/t/p/w500'+ val
+                else return  require('@/assets/default.jpg')
+            },
+            getBackdrop(val){
+                if(val != null) return `url(${'https://image.tmdb.org/t/p/w500'+ val})`
+                else return `url(${require('@/assets/defaultBackdrop.jpg')})`
+                //require('@/assets/defaultBackdrop.jpg')
+                
             },
             getTitle(val){
                 return val
@@ -145,6 +152,10 @@ Vue.use(VueAxios, axios)
             gotoDetails(value){
                 this.$router.push({name: 'Movdetails', params: {id: value}})
                 window.location.reload()
+            },
+            gotoGenre(value){
+            this.$router.push({name: 'Genres', params: {genre: value, page: 1, sort: 'popularity.desc'}})
+            //window.location.reload()
             },
         }
     }

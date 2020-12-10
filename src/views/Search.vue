@@ -26,7 +26,7 @@
                             </v-row>
                         </v-card-text>
                         <v-row class="ml-3">
-                            <v-chip class="ma-1" v-for="genre in item.genre_ids" v-bind:key="genre">{{getGenre(genre)}}</v-chip>
+                            <v-chip class="ma-1" v-for="genre in item.genre_ids.slice(0,4)" v-bind:key="genre" @click="gotoGenre(genre)">{{getGenre(genre)}}</v-chip>
                         </v-row>
                         
                         <v-card-actions>
@@ -75,7 +75,7 @@ Vue.use(VueAxios, axios)
             Vue.axios.get(this.urlApi)
             .then((resp) => {
                 this.dataSearch = resp.data
-                console.log(this.dataSearch)
+                //console.log(this.dataSearch)
                 if(this.dataSearch.total_results == 0) this.searchStatus = false;
                 this.page_length = this.dataSearch.total_pages
             })
@@ -109,7 +109,17 @@ Vue.use(VueAxios, axios)
             getYear(year){
                 if(year != undefined) return '('+year.substring(0,4)+')' 
                 else return ''
-            }
+            },
+            gotoGenre(value){
+                console.log(this.genreApi)
+                for(var i=0; i<this.genreApi.genres.length; i++){
+                    if(this.genreApi.genres[i].id == value){
+                        value = this.genreApi.genres[i].name
+                        break;
+                    }
+                }
+                this.$router.push({name: 'Genres', params: {genre: value, page: 1, sort: 'popularity.desc'}})
+            },
         }
     }
 </script>

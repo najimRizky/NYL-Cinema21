@@ -45,7 +45,7 @@ const routes = [
     component: Years
   },
   {
-    path: '/genres/:genre/:page',
+    path: '/genres/:genre/:page/:sort',
     name: 'Genres',
     component: Genres
   },

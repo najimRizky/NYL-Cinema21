@@ -97,7 +97,6 @@ Vue.use(VueAxios, axios)
             },
             gotoPage(value){
                 this.$router.push({name: 'Search', params: {keyword: this.searchKeyword, page: value}})
-                //this.searchVar += 1;
                 window.location.reload()
             },
             finishLoad(){

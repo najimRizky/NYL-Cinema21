@@ -50,26 +50,25 @@
                             <v-row>
                                 <h2>{{dataMovie.title}}</h2> <h2 class="ml-2" style="font-weight: normal">({{dataMovie.release_date.substring(0, 4)}})</h2>
                             </v-row>
-                            <v-row class="mb-2">
+                            <v-row class="mb-2" v-if="dataMovie.genres != null">
                                 <v-chip class=" ma-1" color="white" label outlined v-for="item in dataMovie.genres" v-bind:key="item.id"><v-icon left> mdi-label</v-icon>{{item.name}}</v-chip>
                             </v-row>
-                            <v-row>
-                                <!--v-rating v-model="dataMovie.vote_average" length="10" color="yellow darken-2" background-color="white" dense readonly size="26"></v-rating> <b class="mt-1">{{dataMovie.vote_average}}/10 ({{dataMovie.vote_count}})</b-->
+                            <v-row v-if="dataMovie.vote_average != null">
                                 <span><v-icon color="yellow" class="mb-1">mdi-star-box</v-icon> {{dataMovie.vote_average}}/10 From {{dataMovie.vote_count}} Users </span>
                             </v-row>
-                            <v-row>
+                            <v-row v-if="dataMovie.production_companies != ''">
                                 <span><v-icon color="red" class="mb-1" >mdi-map-marker-radius</v-icon> {{dataMovie.production_companies[0].origin_country}}</span>
                             </v-row>
-                            <v-row>
+                            <v-row v-if="dataMovie.runtime != null">
                                 <p><v-icon color="green" class="mb-1"> mdi-clock-time-three</v-icon> {{dataMovie.runtime}}m</p>
                             </v-row>
-                            <v-row>
+                            <v-row v-if="dataMovie.release_date != null">
                                 <h3>Release Date</h3>
                             </v-row>
-                            <v-row>
+                            <v-row v-if="dataMovie.release_date != null">
                                 <p>{{dataMovie.release_date}}</p>
                             </v-row>
-                            <v-row>
+                            <v-row v-if="dataMovie.overview != null">
                                 <h3>Overview</h3>
                                 <p>{{dataMovie.overview}}</p>
                             </v-row>
@@ -90,40 +89,6 @@
                         <p style="font-size: 12px; text-align: left; padding: 5px; padding-top: 0px;padding-bottom:0px; margin-top: -20px; margin-bottom: 0px"><b>{{item.title}}</b></p>
                         <p style="color: gray; font-size: 10px; padding: 5px; padding-top: 0px">{{item.release_date}}</p>
                     </v-card>
-                    <!--v-card height="580px">
-                        <v-tooltip bottom >
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-img  v-bind="attrs" v-on="on" v-bind:src="getPoster(item.poster_path)" height="350px" @click="gotoDetails(item.id)" style="cursor: pointer"></v-img>
-                            </template>
-                            <span>{{item.title}}</span>
-                        </v-tooltip>
-                        <v-tooltip top>
-                            <template v-slot:activator="{ on, attrs }">
-                                <span v-bind="attrs" v-on="on" style="position: relative; top: -31px; background: rgba(0,0,0,0.7); color: white; padding: 9px 15px;  margin-bottom: -20px" ><v-icon color="yellow" >mdi-star</v-icon>{{item.vote_average}} </span>
-                            </template>
-                            <span>Rating</span>
-                        </v-tooltip>
-                        <v-tooltip top>
-                            <template v-slot:activator="{ on, attrs }">
-                                <span v-bind="attrs" v-on="on" style="position: relative; top: -21.9em; float: right; background: rgba(0,0,0,0.7); color: white; padding: 9px 15px; border-radius: 5px; margin-bottom: -20px"><v-icon color="white" >mdi-chart-line-variant</v-icon>{{item.popularity}} </span>
-                            </template>
-                            <span>Popularity</span>
-                        </v-tooltip>
-                        <v-card-title style="font-size: 18px; width: 100%; padding-top: 0px; cursor: pointer" @click="gotoDetails(item.id)">{{getTitle(item.title)}}</v-card-title>
-                        <v-card-subtitle>
-                            {{item.release_date.substring(0,4)}}
-                        </v-card-subtitle>
-                        <v-row class="ml-3">
-                            <span id="genre"  class="mx-1" v-for="genre in item.genre_ids.slice(0,3)" v-bind:key="genre">{{getGenre(genre)}}</span>
-                        </v-row>
-                        <v-divider class="mx-4"></v-divider>
-                        <v-card-actions>
-                            <v-col cols="12" align="center">
-                                <v-btn color="yellow darken-3" rounded small dark @click="gotoDetails(item.id)" >See Details</v-btn>
-                            </v-col>
-                        <v-spacer></v-spacer>
-                        </v-card-actions>
-                    </v-card-->
                 </div>
             </div>    
         </div>

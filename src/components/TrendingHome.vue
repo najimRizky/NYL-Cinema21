@@ -3,10 +3,10 @@
     <div style="backdrop-filter: blur(2px)">
       <v-container >
         <v-col cols="12" align="center">
-          <h1 style="color:white"><u>Hall of Fame</u> </h1>
+          <h1 style="color:white">Hall of Fame</h1>
         </v-col>
-        <v-row >
-          <v-col md="4" sm="6" xs="12">
+        <v-row>
+          <v-col md="4" sm="4" cols="12">
             <h1 style="font-weight: normal; text-align: center; color: white" >Trending</h1>
             <v-carousel v-model="model" height="395px" style="border-radius: 10px" show-arrows-on-hover cycle hide-delimiters>
               <v-carousel-item  v-for="item in dataApi" v-bind:key="item.id" @click="getId(item.id)" style="cursor: pointer">
@@ -20,7 +20,7 @@
               </v-carousel-item>
             </v-carousel>
           </v-col>
-          <v-col md="4" sm="6" xs="12">
+          <v-col md="4" sm="4" cols="12">
             <h1 style="font-weight: normal; text-align: center; color: white" >Top Rated</h1>
             <v-carousel v-model="model" height="395px" style="border-radius: 10px" show-arrows-on-hover cycle hide-delimiters>
               <v-carousel-item  v-for="item in dataToprated" v-bind:key="item.id" @click="getId(item.id)" style="cursor: pointer">
@@ -34,7 +34,7 @@
               </v-carousel-item>
             </v-carousel>
           </v-col>
-          <v-col md="4" sm="6" xs="12">
+          <v-col md="4" sm="4" cols="12">
             <h1 style="font-weight: normal; text-align: center; color: white" >Upcoming</h1>
             <v-carousel v-model="model" height="395px" style="border-radius: 10px" show-arrows-on-hover cycle hide-delimiters>
               <v-carousel-item  v-for="item in dataUpcoming" v-bind:key="item.id" @click="getId(item.id)" style="cursor: pointer">

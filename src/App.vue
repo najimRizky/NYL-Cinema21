@@ -81,7 +81,7 @@ export default {
   name: 'App',
 
   data: () => ({
-    genre: ['Action', 'Horror', 'Family', 'Romance', 'Animation','Others'],
+    genre: ['Action', 'Horror', 'Family', 'Romance', 'Animation','Comedy','Others'],
     year: ['2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', 'Others'],
     country: ['USA','South Korea', 'Thailand', 'China', 'Russia', 'Japan', 'India', 'Others'],
     searchIndicator: false,
@@ -121,7 +121,7 @@ export default {
     },
     gotoGenre(val){
       if(val == 'Others') this.$router.push('/filtersearch')
-      else this.$router.push({name: 'Genres', params: {genre: val, page: 1}})
+      else this.$router.push({name: 'Genres', params: {genre: val, page: 1, sort: 'popularity.desc'}})
     },
     gotoCountry(val){
       if(val == 'Others') this.$router.push('/filtersearch')

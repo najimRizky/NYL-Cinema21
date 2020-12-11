@@ -62,6 +62,14 @@
                             <v-row v-if="dataMovie.runtime != null">
                                 <p><v-icon color="green" class="mb-1"> mdi-clock-time-three</v-icon> {{dataMovie.runtime}}m</p>
                             </v-row>
+                            <v-row class="mb-3" v-if="dataTrailer.length != 0">
+                                <v-dialog v-model="dialog" width="600px">
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn color="black" dark v-bind="attrs" v-on="on" small >See Trailer</v-btn>
+                                    </template>
+                                    <iframe v-if="dialog" width="420" height="345" v-bind:src="urlTrailer()"></iframe>
+                                </v-dialog>
+                            </v-row>
                             <v-row v-if="dataMovie.release_date != null">
                                 <h3>Release Date</h3>
                             </v-row>
@@ -78,6 +86,21 @@
                 
             </div>
         </div>
+
+        <div style="padding: 20px" v-if="dataCast.cast.length !=0">
+            <v-divider></v-divider>
+            <v-col cols="12" align="center"><h2>Cast</h2></v-col>
+            <div id="wrapper2">
+                <div v-for="item in dataCast.cast" v-bind:key="item.id">
+                    <v-card width="140px" height="260px" class="mx-3">
+                        <v-img v-bind="attrs" v-on="on" v-bind:src="getPoster(item.profile_path)" height="210px" ></v-img>
+                        <p style="font-size: 12px; text-align: left; padding: 5px; margin-bottom: 0px"><b>{{item.name}}</b></p>
+                        <p style="color: gray; font-size: 10px; padding: 5px; padding-top: 0px"> as {{item.character}}</p>
+                    </v-card>
+                </div>
+            </div>    
+        </div>
+
         <div style="padding: 20px" v-if="dataSimilar.total_results!=0">
             <v-divider></v-divider>
             <v-col cols="12" align="center"><h2>Similar Movies</h2></v-col>
@@ -109,6 +132,9 @@ Vue.use(VueAxios, axios)
             poster: true,
             backdrop: true,
             dataSimilar: undefined,
+            dataTrailer: undefined,
+            dataCast: undefined,
+            dialog: false,
         }),
         mounted(){
             this.idMovie = this.$route.params.id;
@@ -120,12 +146,19 @@ Vue.use(VueAxios, axios)
                     this.dataMovie.backdrop_path = this.dataMovie.belongs_to_collection.backdrop_path
                 }
             })
-            
             this.urlSimilar = 'https://api.themoviedb.org/3/movie/' + this.idMovie + '/similar?api_key=d7acd0104a45104a47c1fb7ba1304230&language=en-US'
             Vue.axios.get(this.urlSimilar)
             .then((resp) => {
                 this.dataSimilar = resp.data
-                console.log(this.dataSimilar, this.urlSimilar)
+            })
+            Vue.axios.get('https://api.themoviedb.org/3/movie/'+ this.idMovie +'/videos?api_key=d7acd0104a45104a47c1fb7ba1304230&language=en-US')
+            .then((resp) => {
+                this.dataTrailer = resp.data.results
+            })
+            Vue.axios.get('https://api.themoviedb.org/3/movie/'+ this.idMovie +'/credits?api_key=d7acd0104a45104a47c1fb7ba1304230&language=en-US')
+            .then((resp) => {
+                this.dataCast = resp.data
+                console.log(this.dataCast)
             })
         },
         methods:{
@@ -157,6 +190,9 @@ Vue.use(VueAxios, axios)
             this.$router.push({name: 'Genres', params: {genre: value, page: 1, sort: 'popularity.desc'}})
             //window.location.reload()
             },
+            urlTrailer(){
+                return 'https://www.youtube.com/embed/' + this.dataTrailer[0].key
+            },
         }
     }
 </script>
@@ -167,6 +203,11 @@ Vue.use(VueAxios, axios)
     }
     #wrapper{
         height: 320px;
+        display: flex;
+        overflow-x: auto;
+    }
+    #wrapper2{
+        height: 290px;
         display: flex;
         overflow-x: auto;
     }

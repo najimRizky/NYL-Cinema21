@@ -3,9 +3,9 @@
         <v-container>
             <v-col cols="12" align="center">
                 <h2>{{keyCountry}} Movies</h2>
-                <!--v-col cols="6">
+                <v-col cols="6">
                     <v-select label="sort-by" :items="sort_by" v-model="selectedSort" @input="gotoSort(selectedSort)"></v-select>
-                </v-col-->
+                </v-col>
             </v-col>
             <v-row>
                 <v-col xs="12" align="center">
@@ -47,13 +47,13 @@
                 </v-col>
             </v-row>
         </v-container>
-        <!--v-container>
+        <v-container>
             <v-row>
                 <v-col xs="12" align="center">
                     <v-pagination v-model="pageNow" :length="pageLength" v-if="pageLength > 1" circle @input="gotoPage(pageNow)"></v-pagination>
                 </v-col>
             </v-row>
-        </v-container-->
+        </v-container>
     </div>
 </template>
 
@@ -77,6 +77,8 @@ export default {
     mounted(){
         this.pageNow = parseInt(this.$route.params.page)
         this.keyCountry = this.$route.params.country;
+        this.sortOption = this.$route.params.sort;
+        this.selectedSort = this.sortOption;
         switch(this.keyCountry){
             case 'USA' : this.idCountry = "US"
             break;
@@ -93,7 +95,7 @@ export default {
             case 'India' : this.idCountry = "IN"
             break;
         }
-        Vue.axios.get('https://api.themoviedb.org/3/discover/movie?api_key=d7acd0104a45104a47c1fb7ba1304230&language=en-US&region='+this.idCountry+'&sort_by=popularity.desc&include_adult=false&include_video=false&page='+this.pageNow)
+        Vue.axios.get('https://api.themoviedb.org/3/discover/movie?api_key=d7acd0104a45104a47c1fb7ba1304230&language=en-US&region='+this.idCountry+'&sort_by='+this.sortOption+'&include_adult=false&include_video=false&page='+this.pageNow)
             .then((resp) => {
                 this.dataUtamaCountry = resp.data;
                 this.pageLength = this.dataUtamaCountry.total_pages
@@ -137,7 +139,7 @@ export default {
             window.location.reload()
         },
         gotoSort(val){
-            this.$router.push({name: 'Genres', params: {page: 1, sort: val}})
+            this.$router.push({name: 'Countries', params: {page: 1, sort: val}})
             window.location.reload()
         }
     }

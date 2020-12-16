@@ -50,7 +50,7 @@ const routes = [
     component: Genres
   },
   {
-    path: '/countries/:country/:page',
+    path: '/countries/:country/:page/:sort',
     name: 'Countries',
     component: Countries
   },

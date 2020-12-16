@@ -177,12 +177,12 @@
     <div> <v-col cols="12" align="center">
         Motto: <br>
       'Hidup ini penuh kesempatan, 
-      ambil kesempatan itu saat kau di berikan dan jangan menyia - nyiakan karena kita tidak tahu apakah kita akan mendapatkannya lagi'</v-col></div>
+      Ambilah kesempatan itu saat kau diberikan dan jangan di sia - siakan'</v-col></div>
     </v-card-text>
 
     <v-card-actions>
       <v-col cols="12" align="center">
-      <a href="">
+      <a href="https://github.com/agfaningrum">
         <v-btn class="mx-2" fab dark small color="black">    
           <v-icon dark>
             mdi-github
@@ -196,7 +196,7 @@
           </v-icon>
         </v-btn>
       </a>
-       <a href="" target="blank">
+       <a href="https://www.instagram.com/agfawulan/" target="blank">
         <v-btn class="mx-2" fab dark small color="black">    
           <v-icon dark>
             mdi-instagram

@@ -169,7 +169,7 @@
     ></v-img>
 
     <v-card-text>
-    <div> Name : Laras Wulandari </div>
+    <div> Name : Laras Wulandari Agfaningrum </div>
     <div> Date of Birth : 10 Desember 2000 </div>
     <div> Age  : 20  </div>
     <div> NIM  : 00000040107 </div><br>
@@ -189,7 +189,7 @@
           </v-icon>
         </v-btn>
       </a>
-       <a href="">
+       <a href="https://id-id.facebook.com/laras.wulandari.355">
         <v-btn class="mx-2" fab dark small color="black">    
           <v-icon dark>
             mdi-facebook
@@ -203,7 +203,7 @@
           </v-icon>
         </v-btn>
       </a>
-       <a href="">
+       <a href="https://twitter.com/larasgmail">
         <v-btn class="mx-2" fab dark small color="black">    
           <v-icon dark>
             mdi-twitter

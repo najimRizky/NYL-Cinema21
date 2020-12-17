@@ -16,7 +16,7 @@
         <v-container fluid>
             <v-row>
                 <v-col lg="2" md="3" sm="4" cols="6" v-for="item in dataUtamaGenre.results" v-bind:key="item.id" >
-                    <v-card height="550px">
+                    <v-card height="550px" loading="true">
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on, attrs }">
                                 <v-img  v-bind="attrs" v-on="on" v-bind:src="getPoster(item.poster_path)" height="350px" @click="gotoDetails(item.id)" style="cursor: pointer"></v-img>

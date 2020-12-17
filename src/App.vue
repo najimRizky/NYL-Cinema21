@@ -125,16 +125,23 @@ export default {
     gotoGenre(val){
       if(val == 'Others') this.$router.push('/filtersearch')
       else{
-        this.$router.push({name: 'Genres', params: {genre: val, page: 1, sort: 'popularity.desc'}})
-        if(this.$route.name == 'Genres') window.location.reload()
+        if(this.$route.name == 'Genres'){
+          this.$router.push({name: 'Genres', params: {genre: val, page: 1, sort: 'popularity.desc'}})
+          window.location.reload()
+        }
+        else this.$router.push({name: 'Genres', params: {genre: val, page: 1, sort: 'popularity.desc'}})
       } 
     },
     gotoCountry(val){
       if(val == 'Others') this.$router.push('/filtersearch')
       else{
-        this.$router.push({name: 'Countries', params: {country: val, page: 1}})
-        if(this.$route.name == 'Countries') window.location.reload()
+        if(this.$route.name == 'Countries'){
+          this.$router.push({name: 'Countries', params: {country: val, page: 1}})
+          window.location.reload()
+        }
+        else this.$router.push({name: 'Countries', params: {country: val, page: 1}})
       } 
+        
     }
   }
 };

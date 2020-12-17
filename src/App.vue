@@ -120,7 +120,13 @@ export default {
     },
     gotoYear(val){
       if(val == 'Others') this.$router.push('/filtersearch')
-      else this.$router.push({name: 'Years', params: {year: val, page: 1}})
+      else{
+        if(this.$route.name == 'Years'){
+          this.$router.push({name: 'Years', params: {year: val, page: 1, sort: 'popularity.desc'}})
+          window.location.reload()
+        }
+        else this.$router.push({name: 'Years', params: {year: val, page: 1, sort: 'popularity.desc'}})
+      }
     },
     gotoGenre(val){
       if(val == 'Others') this.$router.push('/filtersearch')
@@ -136,10 +142,10 @@ export default {
       if(val == 'Others') this.$router.push('/filtersearch')
       else{
         if(this.$route.name == 'Countries'){
-          this.$router.push({name: 'Countries', params: {country: val, page: 1}})
+          this.$router.push({name: 'Countries', params: {country: val, page: 1, sort: 'popularity.desc'}})
           window.location.reload()
         }
-        else this.$router.push({name: 'Countries', params: {country: val, page: 1}})
+        else this.$router.push({name: 'Countries', params: {country: val, page: 1, sort: 'popularity.desc'}})
       } 
         
     }

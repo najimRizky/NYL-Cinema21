@@ -3,15 +3,15 @@
         <v-container>
             <v-col cols="12" align="center">
                 <h2>{{keyYear}} Movies</h2>
-                <!--v-col cols="6">
+                <v-col cols="6">
                     <v-select label="sort-by" :items="sort_by" v-model="selectedSort" @input="gotoSort(selectedSort)"></v-select>
-                </v-col-->
+                </v-col>
             </v-col>
-            <!--v-row>
+            <v-row>
                 <v-col xs="12" align="center">
                     <v-pagination v-model="pageNow" :length="pageLength" v-if="pageLength > 1" circle @input="gotoPage(pageNow)"></v-pagination>
                 </v-col>
-            </v-row-->
+            </v-row>
         </v-container>
         <v-container fluid>
             <v-row>
@@ -47,13 +47,13 @@
                 </v-col>
             </v-row>
         </v-container>
-        <!--v-container>
+        <v-container>
             <v-row>
                 <v-col xs="12" align="center">
                     <v-pagination v-model="pageNow" :length="pageLength" v-if="pageLength > 1" circle @input="gotoPage(pageNow)"></v-pagination>
                 </v-col>
             </v-row>
-        </v-container-->
+        </v-container>
     </div>
 </template>
 
@@ -79,7 +79,7 @@ export default {
         this.keyYear = this.$route.params.year;
         this.sortOption = this.$route.params.sort;
         this.selectedSort = this.sortOption
-        Vue.axios.get('https://api.themoviedb.org/3/discover/movie?api_key=d7acd0104a45104a47c1fb7ba1304230&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year='+this.keyYear)
+        Vue.axios.get('https://api.themoviedb.org/3/discover/movie?api_key=d7acd0104a45104a47c1fb7ba1304230&language=en-US&sort_by='+ this.sortOption +'&include_adult=false&include_video=false&page='+ this.pageNow +'&primary_release_year='+this.keyYear)
         .then((resp) => {
             this.dataUtamaYear = resp.data;
             this.pageLength = this.dataUtamaYear.total_pages
@@ -106,7 +106,7 @@ export default {
             }
         },
         gotoPage(value){
-            this.$router.push({name: 'Year', params: {page: value}})
+            this.$router.push({name: 'Years', params: {page: value}})
             window.location.reload()
         },
         gotoDetails(value){
@@ -123,7 +123,7 @@ export default {
             window.location.reload()
         },
         gotoSort(val){
-            this.$router.push({name: 'Year', params: {page: 1, sort: val}})
+            this.$router.push({name: 'Years', params: {page: 1, sort: val}})
             window.location.reload()
         }
     }

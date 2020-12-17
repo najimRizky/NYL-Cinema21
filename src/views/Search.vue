@@ -1,5 +1,5 @@
 <template>
-    <div :key="searchVar" style="padding-left: 4px">
+    <v-container :key="searchVar" >
         <div v-if="!searchStatus">
             <h2 style="padding: 20px">Nothing found from "{{this.value}}"</h2>
         </div>
@@ -11,13 +11,13 @@
                 </v-col>
             </v-row>
         </v-container>
-        <div v-if="searchStatus">
+        <div v-if="searchStatus" style="margin: 0px" cols="5">
             <v-card  class="mx-auto my-6" max-width="620" v-for="item in dataSearch.results" v-bind:key="item.id" elevation="7">
                 <v-row >
-                    <v-col md="3" xs="6" sm="4" style="padding-top: 0px; padding-bottom: 0px">
+                    <v-col md="3" cols="12" sm="4" style="padding-top: 0px; padding-bottom: 0px">
                         <v-img style="border-radius: 4px; width: 100%"  v-bind:src="getPoster(item.poster_path)" alt="No photo"></v-img>
                     </v-col>
-                    <v-col md="9" xs="6" sm="8" style="padding-top: 0px">
+                    <v-col md="9" cols="12" sm="8" style="padding-top: 0px">
                         <v-card-title style="font-size: 18px" >{{item.title}} {{getYear(item.release_date)}}</v-card-title>
                         <v-card-text>
                             <v-row align="center" class="mx-0">
@@ -46,7 +46,7 @@
         <div v-if="!loadStatus">
             {{finishLoad()}}
         </div>
-    </div>
+    </v-container>
 </template>
 
 <script>

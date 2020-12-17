@@ -13,7 +13,7 @@
         <v-container fluid>
             <v-row>
                 <v-col lg="2" md="3" sm="4" cols="6" v-for="item in dataPopular.results" v-bind:key="item.id" >
-                    <v-card height="580px">
+                    <v-card height="550px">
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on, attrs }">
                                 <v-img  v-bind="attrs" v-on="on" v-bind:src="getPoster(item.poster_path)" height="350px" @click="gotoDetails(item.id)" style="cursor: pointer"></v-img>
@@ -40,12 +40,12 @@
                             <span id="genre"  class="mx-1" v-for="genre in item.genre_ids.slice(0,3)" v-bind:key="genre" @click="gotoGenre(genre)">{{getGenre(genre)}}</span>
                         </v-row>
                         <v-divider class="mx-4"></v-divider>
-                        <v-card-actions>
+                        <!--v-card-actions>
                             <v-col cols="12" align="center">
                                 <v-btn color="yellow darken-3" rounded small dark @click="gotoDetails(item.id)" >See Details</v-btn>
                             </v-col>
                         <v-spacer></v-spacer>
-                        </v-card-actions>
+                        </v-card-actions-->
                     </v-card>
                 </v-col>
             </v-row>

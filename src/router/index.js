@@ -40,7 +40,7 @@ const routes = [
     component: Popular
   },
   {
-    path: '/years/:year/:page',
+    path: '/years/:year/:page/:sort',
     name: 'Years',
     component: Years
   },

@@ -1,5 +1,5 @@
 <template>
-  <div :style="{'background-image': 'url('+ require('../assets/cinema.jpg') +')', 'background-size' : '100%', 'overflow': 'scrol'}">
+  <div :style="{'background-image': 'url('+ require('../assets/cinema.jpg') +')', 'background-color': 'black', 'background-size' : '100%', 'overflow': 'scrol'}">
     <div style="backdrop-filter: blur(2px)">
       <v-container >
         <v-col cols="12" align="center">

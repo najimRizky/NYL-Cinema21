@@ -136,39 +136,38 @@
 
         <v-card-actions>
           <v-col cols="12" align="center">
-          <a href="" target="blank">
+          <a href="https://github.com/agfaningrum" target="blank">
             <v-btn class="mx-2" fab dark small color="black">    
               <v-icon dark>
                 mdi-github
               </v-icon>
             </v-btn>
           </a>
-          <a href="" target="blank">
+          <a href="https://www.instagram.com/agfawulan/" target="blank">
             <v-btn class="mx-2" fab dark small color="black">    
               <v-icon dark>
                 mdi-instagram
               </v-icon>
             </v-btn>
           </a>
-          <a href="" target="blank">
+          <a href="https://twitter.com/larasgmail" target="blank">
             <v-btn class="mx-2" fab dark small color="black">    
               <v-icon dark>
                 mdi-twitter
               </v-icon>
             </v-btn>
           </a>
-          <a href="" target="blank">
+          <!--a href="" target="blank">
             <v-btn class="mx-2" fab dark small color="black">    
               <v-icon dark>
                 mdi-linkedin
               </v-icon>
             </v-btn>
-          </a>
+          </a-->
           </v-col>
         </v-card-actions>
       </v-card>
       </v-col>
-
       </v-layout>
     </v-container>
   </div>

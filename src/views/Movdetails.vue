@@ -1,50 +1,28 @@
 <template>
     <div>
-        <!--div v-if="dataMovie.backdrop_path == null || dataMovie.poster_path == null" :style="{'background-image': `url(${'https://picsum.photos/1280/720'})`, 'background-size' : '100%' }">                   
-            <div :style="{'backdrop-filter': 'blur(10px)', 'background-color': 'rgba(0,0,0,0.4)'}">
-                <v-container id="movDetails" >
-                    <v-row >
-                        <v-col md="5" xs="12">
-                            <v-img v-bind:src="getPoster(dataMovie.poster_path)" width="400px" />    
-                        </v-col>
-                        <v-col md="6" xs="12" class="ml-3">
-                            <v-row>
-                                <h2>{{dataMovie.title}}</h2> <h2 v-if="dataMovie.release_date != null" class="ml-2" style="font-weight: normal">({{dataMovie.release_date.substring(0, 4)}})</h2>
-                            </v-row>
-                            <v-row class="mb-2" v-if="dataMovie.genres != null">
-                                <v-chip class=" ma-1" color="white" label outlined v-for="item in dataMovie.genres" v-bind:key="item.id" @click="gotoGenre(item.name)"><v-icon left> mdi-label</v-icon>{{item.name}}</v-chip>
-                            </v-row>
-                            <v-row v-if="dataMovie.vote_average != null">
-                                <span><v-icon color="yellow" class="mb-1">mdi-star-box</v-icon> {{dataMovie.vote_average}}/10 From {{dataMovie.vote_count}} Users </span>
-                            </v-row>
-                            <v-row v-if="dataMovie.production_companies != ''">
-                                <span><v-icon color="red" class="mb-1" >mdi-map-marker-radius</v-icon> {{dataMovie.production_companies[0].origin_country}}</span>
-                            </v-row>
-                            <v-row v-if="dataMovie.runtime != null">
-                                <p><v-icon color="green" class="mb-1"> mdi-clock-time-three</v-icon> {{dataMovie.runtime}}m</p>
-                            </v-row>
-                            <v-row v-if="dataMovie.release_date != null">
-                                <h3>Release Date</h3>
-                            </v-row>
-                            <v-row v-if="dataMovie.release_date != null">
-                                <p>{{dataMovie.release_date}}</p>
-                            </v-row>
-                            <v-row v-if="dataMovie.overview != null">
-                                <h3>Overview</h3>
-                                <p>{{dataMovie.overview}}</p>
-                            </v-row>
-                        </v-col>
-                    </v-row>
-                </v-container>
-            </div>
-        </div-->
-
         <div :style="{'background-image': getBackdrop(dataMovie.backdrop_path), 'background-size' : '100%' }">                   
             <div :style="{'backdrop-filter': 'blur(10px)', 'background-color': 'rgba(0,0,0,0.4)'}">
                 <v-container id="movDetails" >
                     <v-row >
-                        <v-col md="5" xs="12">
-                            <v-img v-bind:src="getPoster(dataMovie.poster_path)" />    
+                        <v-col md="5" sm="5" cols="12" >
+                            <v-img v-bind:src="getPoster(dataMovie.poster_path)" />
+                            <!--v-hover>
+                                <template v-slot:default="{ hover }">
+                                    <v-card class="mx-auto" max-width="344">
+                                    <v-img v-bind:src="getPoster(dataMovie.poster_path)"/>
+                                    <v-fade-transition>
+                                        <v-overlay v-if="hover" absolute color="white">
+                                            <v-dialog v-model="dialog" width="600px">
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <v-btn color="black" dark v-bind="attrs" v-on="on">See Trailer</v-btn>
+                                                </template>
+                                                <iframe v-if="dialog && hover" width="420" height="345" v-bind:src="urlTrailer()"></iframe>
+                                            </v-dialog>
+                                        </v-overlay>
+                                    </v-fade-transition>
+                                    </v-card>
+                                </template>
+                            </v-hover-->
                         </v-col>
                         <v-col md="6" xs="12" class="ml-3">
                             <v-row>
@@ -135,6 +113,7 @@ Vue.use(VueAxios, axios)
             dataTrailer: undefined,
             dataCast: undefined,
             dialog: false,
+            overlay: false,
         }),
         mounted(){
             this.idMovie = this.$route.params.id;

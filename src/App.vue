@@ -15,7 +15,7 @@
         </v-btn>
         <br>
       </v-app-bar>
-      <v-tabs color="black"  class="mt-15 " background-color="#FACD36">
+      <v-tabs color="black"  class="mt-15 " background-color="orange">
         <v-tab to="/">Home</v-tab>
         <v-tab to="/popular/1">Popular</v-tab>
         <v-tab to="/filtersearch">Filter Search</v-tab>
@@ -67,19 +67,22 @@
       </v-tabs>
       <v-text-field class="expanding-search" placeholder="Search" v-if="searchIndicator" filled dense color="grey" prepend-inner-icon="mdi-magnify" 
       v-on:keyup.enter="gotoSearch()" v-model="searchKeyword" style="margin-bottom: -25px;"></v-text-field>
-
     </div>
     <v-main> 
       <router-view></router-view>
     </v-main>
+    <Footer/>
   </v-app>
 </template>
 
 <script>
+import Footer from './components/Footer.vue';
 
 export default {
   name: 'App',
-
+  components:{
+    Footer
+  },
   data: () => ({
     genre: ['Action', 'Horror', 'Family', 'Romance', 'Animation','Comedy','Others'],
     year: ['2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', 'Others'],
@@ -121,11 +124,17 @@ export default {
     },
     gotoGenre(val){
       if(val == 'Others') this.$router.push('/filtersearch')
-      else this.$router.push({name: 'Genres', params: {genre: val, page: 1, sort: 'popularity.desc'}})
+      else{
+        this.$router.push({name: 'Genres', params: {genre: val, page: 1, sort: 'popularity.desc'}})
+        if(this.$route.name == 'Genres') window.location.reload()
+      } 
     },
     gotoCountry(val){
       if(val == 'Others') this.$router.push('/filtersearch')
-      else this.$router.push({name: 'Countries', params: {country: val, page: 1}})
+      else{
+        this.$router.push({name: 'Countries', params: {country: val, page: 1}})
+        if(this.$route.name == 'Countries') window.location.reload()
+      } 
     }
   }
 };

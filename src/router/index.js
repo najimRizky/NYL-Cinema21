@@ -55,7 +55,7 @@ const routes = [
     component: Countries
   },
   {
-    path: '/filterresults/',
+    path: '/filterresults/:genre1/:genre2/:country/:year/:page/:sort',
     name: 'Filterresults',
     component: Filterresults
   },

@@ -67,6 +67,9 @@
       </v-tabs>
       <v-text-field class="expanding-search" placeholder="Search... (Press Enter to Search)" v-if="searchIndicator" filled dense color="grey" prepend-inner-icon="mdi-magnify" 
       v-on:keyup.enter="gotoSearch()" v-model="searchKeyword" style="margin-bottom: -25px;"></v-text-field>
+        <v-alert v-model="alert"  color="red" border="left" elevation="2" colored-border icon="mdi-alert" >
+            Keyword is empty!
+        </v-alert>
     </div>
     <v-main> 
       <router-view></router-view>
@@ -88,6 +91,7 @@ export default {
     year: ['2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', 'Others'],
     country: ['USA', 'Thailand', 'China', 'Russia', 'Japan', 'India', 'Others'],
     searchIndicator: false,
+    alert: false,
     searchKeyword: '',
   }),
   methods:{
@@ -109,14 +113,20 @@ export default {
       }
     },
     gotoSearch(){
-      if(this.$route.name == 'Search'){
-        this.$router.push({name: 'Search', params: {keyword: this.searchKeyword, page: 1}})
-        window.location.reload()
+      if(this.searchKeyword == ''){
+        this.alert=true;
+        setTimeout(() => { this.alert = false  }, 3000)
+        console.log('sini')
       }else{
-        this.$router.push({name: 'Search', params: {keyword: this.searchKeyword, page: 1}})
+        if(this.$route.name == 'Search'){
+          this.$router.push({name: 'Search', params: {keyword: this.searchKeyword, page: 1}})
+          window.location.reload()
+        }else{
+          this.$router.push({name: 'Search', params: {keyword: this.searchKeyword, page: 1}})
+        }
+        this.searchKeyword= '';
+        this.searchIndicator= false;
       }
-      this.searchKeyword= '';
-      this.searchIndicator= false;
     },
     gotoYear(val){
       if(val == 'Others') this.$router.push('/filtersearch')

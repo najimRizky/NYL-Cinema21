@@ -65,13 +65,26 @@
             </div>
         </div>
 
-        <div style="padding: 20px" v-if="dataCast.cast.length !=0">
+        <v-container fluid v-if="dataMovie.production_companies != null">
+                <v-row justify="center">
+                    <v-col md="2" sm="12" v-for="item in dataMovie.production_companies" :key="item.id">
+                        <v-col align="center">
+                            <span style="font-size: 12px">{{item.name}}</span>
+                        </v-col>
+                        <v-col align="center">
+                            <v-img :src="getPoster(item.logo_path)" width="100px" ></v-img>
+                        </v-col>
+                    </v-col>
+                </v-row>
+        </v-container>
+
+        <div v-if="dataCast.cast.length !=0">
             <v-divider></v-divider>
             <v-col cols="12" align="center"><h2>Cast</h2></v-col>
             <div id="wrapper2">
                 <div v-for="item in dataCast.cast" v-bind:key="item.id">
                     <v-card width="140px" height="260px" class="mx-3">
-                        <v-img v-bind="attrs" v-on="on" v-bind:src="getPoster(item.profile_path)" height="210px" ></v-img>
+                        <v-img v-bind="attrs" v-on="on" v-bind:src="getPoster(item.profile_path)" height="190px" ></v-img>
                         <p style="font-size: 12px; text-align: left; padding: 5px; margin-bottom: 0px"><b>{{item.name}}</b></p>
                         <p style="color: gray; font-size: 10px; padding: 5px; padding-top: 0px"> as {{item.character}}</p>
                     </v-card>
@@ -85,8 +98,8 @@
             <div id="wrapper">
                 <div v-for="item in dataSimilar.results" v-bind:key="item.id">
                     <v-card width="140px" height="280px" class="mx-3" @click="gotoDetails(item.id)">
-                        <v-img v-bind="attrs" v-on="on" v-bind:src="getPoster(item.poster_path)" height="210px"  style="cursor: pointer"></v-img>
-                        <span v-bind="attrs" v-on="on" style="position: relative; top: -24px;font-size: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 10px;  margin-bottom: -20px" ><v-icon color="yellow" style="font-size: 12px;">mdi-star</v-icon>{{item.vote_average}} </span>
+                        <v-img  v-bind:src="getPoster(item.poster_path)" height="210px"  style="cursor: pointer"></v-img>
+                        <span  style="position: relative; top: -24px;font-size: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 10px;  margin-bottom: -20px" ><v-icon color="yellow" style="font-size: 12px;">mdi-star</v-icon>{{item.vote_average}} </span>
                         <p style="font-size: 12px; text-align: left; padding: 5px; padding-top: 0px;padding-bottom:0px; margin-top: -20px; margin-bottom: 0px"><b>{{item.title}}</b></p>
                         <p style="color: gray; font-size: 10px; padding: 5px; padding-top: 0px">{{item.release_date}}</p>
                     </v-card>

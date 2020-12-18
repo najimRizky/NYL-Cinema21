@@ -120,7 +120,7 @@ export default {
                 }
             }
             this.$router.push({name: 'Genres', params: {genre: value, page: 1, sort: 'popularity.desc'}})
-            window.location.reload()
+            //window.location.reload()
         },
         gotoSort(val){
             this.$router.push({name: 'Years', params: {page: 1, sort: val}})

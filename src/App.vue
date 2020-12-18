@@ -3,7 +3,7 @@
     <div>
       <v-app-bar absolute color="#252525" dark>
         <div class="d-flex align-center">
-          <h2 @click="gotoHome()" style="cursor: pointer">NYL Cinema 21</h2>
+          <h2 @click="gotoHome()" id="webTitle" style="cursor: pointer">NYL Cinema 21</h2>
         </div>
         <v-spacer></v-spacer>
         <v-btn text @click="openSearch()">
@@ -65,7 +65,7 @@
           </v-list>
         </v-menu>
       </v-tabs>
-      <v-text-field class="expanding-search" placeholder="Search" v-if="searchIndicator" filled dense color="grey" prepend-inner-icon="mdi-magnify" 
+      <v-text-field class="expanding-search" placeholder="Search... (Press Enter to Search)" v-if="searchIndicator" filled dense color="grey" prepend-inner-icon="mdi-magnify" 
       v-on:keyup.enter="gotoSearch()" v-model="searchKeyword" style="margin-bottom: -25px;"></v-text-field>
     </div>
     <v-main> 
@@ -86,7 +86,7 @@ export default {
   data: () => ({
     genre: ['Action', 'Horror', 'Family', 'Romance', 'Animation','Comedy','Others'],
     year: ['2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', 'Others'],
-    country: ['USA','South Korea', 'Thailand', 'China', 'Russia', 'Japan', 'India', 'Others'],
+    country: ['USA', 'Thailand', 'China', 'Russia', 'Japan', 'India', 'Others'],
     searchIndicator: false,
     searchKeyword: '',
   }),
@@ -142,10 +142,10 @@ export default {
       if(val == 'Others') this.$router.push('/filtersearch')
       else{
         if(this.$route.name == 'Countries'){
-          this.$router.push({name: 'Countries', params: {country: val, page: 1, sort: 'popularity.desc'}})
+          this.$router.push({name: 'Countries', params: {country: val, page: 1, sort: 'release_date.desc'}})
           window.location.reload()
         }
-        else this.$router.push({name: 'Countries', params: {country: val, page: 1, sort: 'popularity.desc'}})
+        else this.$router.push({name: 'Countries', params: {country: val, page: 1, sort: 'release_date.desc'}})
       } 
         
     }
@@ -170,4 +170,9 @@ export default {
       top: 0px;
     } 
   }
+  @media only screen and (max-width: 400px) {
+  #webTitle {
+    font-size: 18px;
+  }
+}
 </style>

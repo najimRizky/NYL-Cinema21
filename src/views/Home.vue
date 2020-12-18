@@ -1,8 +1,13 @@
 <template>
   <div class="home">
     <TrendingHome/>
-    <v-divider></v-divider>
+    <v-container>
+      <hr style="width: 100%; margin-top: 30px; height: 2px; background-color: black">
+    </v-container>
     <PopulerHome/>
+    <v-container>
+      <hr style="width: 100%; margin-top: 30px; height: 2px; background-color: black">
+    </v-container>
   </div>
 </template>
 

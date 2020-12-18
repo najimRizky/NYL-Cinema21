@@ -8,7 +8,7 @@
         <v-row>
           <v-col md="4" sm="4" cols="12">
             <h1 style="font-weight: normal; text-align: center; color: white" >Trending</h1>
-            <v-carousel v-model="model" height="395px" style="border-radius: 10px" show-arrows-on-hover cycle hide-delimiters>
+            <v-carousel  height="395px" style="border-radius: 10px" show-arrows-on-hover cycle hide-delimiters>
               <v-carousel-item  v-for="item in dataApi" v-bind:key="item.id" @click="getId(item.id)" style="cursor: pointer">
                 <v-sheet height="100%" tile :style="{'background-image': `url(${'https://image.tmdb.org/t/p/original/'+ item.poster_path})`, 'background-position' : 'center' , 'background-size': '100%'}">
                   <v-row class="" justify="center" >
@@ -22,7 +22,7 @@
           </v-col>
           <v-col md="4" sm="4" cols="12">
             <h1 style="font-weight: normal; text-align: center; color: white" >Top Rated</h1>
-            <v-carousel v-model="model" height="395px" style="border-radius: 10px" show-arrows-on-hover cycle hide-delimiters>
+            <v-carousel  height="395px" style="border-radius: 10px" show-arrows-on-hover cycle hide-delimiters>
               <v-carousel-item  v-for="item in dataToprated" v-bind:key="item.id" @click="getId(item.id)" style="cursor: pointer">
                 <v-sheet height="100%" tile :style="{'background-image': `url(${'https://image.tmdb.org/t/p/original/'+ item.poster_path})`, 'background-position' : 'center' , 'background-size': '100%'}">
                   <v-row class="" justify="center" >
@@ -36,7 +36,7 @@
           </v-col>
           <v-col md="4" sm="4" cols="12">
             <h1 style="font-weight: normal; text-align: center; color: white" >Upcoming</h1>
-            <v-carousel v-model="model" height="395px" style="border-radius: 10px" show-arrows-on-hover cycle hide-delimiters>
+            <v-carousel  height="395px" style="border-radius: 10px" show-arrows-on-hover cycle hide-delimiters>
               <v-carousel-item  v-for="item in dataUpcoming" v-bind:key="item.id" @click="getId(item.id)" style="cursor: pointer">
                 <v-sheet height="100%" tile :style="{'background-image': `url(${'https://image.tmdb.org/t/p/original/'+ item.poster_path})`, 'background-position' : 'center' , 'background-size': '100%'}">
                   <v-row class="" justify="center" >

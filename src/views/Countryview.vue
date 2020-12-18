@@ -68,17 +68,24 @@ export default {
         idCountry: undefined,
         dataGenre: undefined,
         dataUtamaCountry: undefined,
+        dataCountry: undefined,
         pageLength: undefined,
         pageNow: null,
         sortOption: undefined,
         selectedSort: undefined,
-        sort_by: ['popularity.asc', 'popularity.desc',  'release_date.asc', 'release_date.desc', 'vote_average.asc', 'vote_average.desc' ]
+        sort_by: [ 'release_date.asc', 'release_date.desc', 'vote_average.asc', 'vote_average.desc' ]
     }),
     mounted(){
         this.pageNow = parseInt(this.$route.params.page)
         this.keyCountry = this.$route.params.country;
         this.sortOption = this.$route.params.sort;
         this.selectedSort = this.sortOption;
+        /*Vue.axios.get('https://api.themoviedb.org/3/configuration/countries?api_key=d7acd0104a45104a47c1fb7ba1304230')
+        .then((resp) => {
+            this.dataCountry = resp.data;
+        })
+        console.log(this.dataCountry)*/
+
         switch(this.keyCountry){
             case 'USA' : this.idCountry = "US"
             break;
@@ -99,7 +106,7 @@ export default {
             .then((resp) => {
                 this.dataUtamaCountry = resp.data;
                 this.pageLength = this.dataUtamaCountry.total_pages
-                console.log(this.dataUtamaCountry)
+                //console.log(this.dataUtamaCountry)
             })
         Vue.axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=d7acd0104a45104a47c1fb7ba1304230&language=en-US')
             .then((resp) => {
@@ -136,7 +143,7 @@ export default {
                 }
             }
             this.$router.push({name: 'Genres', params: {genre: value, page: 1, sort: 'popularity.desc'}})
-            window.location.reload()
+            //window.location.reload()
         },
         gotoSort(val){
             this.$router.push({name: 'Countries', params: {page: 1, sort: val}})

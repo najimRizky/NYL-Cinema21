@@ -12,7 +12,7 @@
             <v-card-text align="center">
                 Website ini merupakan website yang dibuat untuk memenuhi nilai Ujian Akhir Semester semester 3 tahun 2020 di Universitas Multimedia Nusantara pada mata kuliah Pengantar Teknologi Internet. 
                 Adapun framework yang digunakan untuk mengembangkan website ini adalah dengan Vue JS.
-                Apabila terdapat kesamaan ide, tokoh, cerita, tempat, dan lain sebagainya, maka hal tersebut terjadi karena kebetulan belaka.
+                Seluruh data yang ada pada website ini berasal dari API movieDB. Silahkan kunjungi laman movieDB jika ingin menggunakan API tersebut.
             </v-card-text>
             <v-col cols="12">
                 <hr style="background-color: white; height: 0.1px; border: none">

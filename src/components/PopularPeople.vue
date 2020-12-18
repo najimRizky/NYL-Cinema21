@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-col cols="12" align="center"><h2>Popular Actor</h2></v-col>
+        <v-col cols="12" align="center"><h2>Popular Actor/Actress</h2></v-col>
         <div id="wrapper2">
             <div v-for="item in dataPeople.results" v-bind:key="item.id">
                 <v-card width="140px" height="300px" class="mx-3">

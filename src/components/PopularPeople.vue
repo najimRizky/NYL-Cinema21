@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container v-if="dataPeople !== undefined">
         <v-col cols="12" align="center"><h2>Popular Actor/Actress</h2></v-col>
         <div id="wrapper2">
             <div v-for="item in dataPeople.results" v-bind:key="item.id">

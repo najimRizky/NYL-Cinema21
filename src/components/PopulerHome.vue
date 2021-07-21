@@ -1,5 +1,5 @@
-<template>
-    <div>
+<template >
+    <div v-if="dataPopular !== undefined">
         <v-container >
             <v-row>
                 <v-col cols="12" align="center">
@@ -23,27 +23,12 @@
                             </template>
                             <span>Rating</span>
                         </v-tooltip>
-                        <!--v-tooltip top>
-                            <template v-slot:activator="{ on, attrs }">
-                                <span v-bind="attrs" v-on="on" style="position: relative; top: -21.9em; float: right; background: rgba(0,0,0,0.7); color: white; padding: 9px 15px; border-radius: 5px; margin-bottom: -40px"><v-icon color="white" >mdi-chart-line-variant</v-icon>{{item.popularity}} </span>
-                            </template>
-                            <span>Popularity</span>
-                        </v-tooltip-->
-                            
+                        
                         <v-card-title style="font-size: 14px; width: 100%; padding-top: 0px; cursor: pointer; margin-top: -20px" @click="gotoDetails(item.id)">{{getTitle(item.title)}} </v-card-title>
                         <v-card-subtitle style="font-size: 13px;">
-                            ({{item.release_date.substring(0,4)}})
+                            ({{toString(item.release_date).substring(0,4)}})
                         </v-card-subtitle >
-                        <!--v-row class="ml-3">
-                            <span style="font-size: 10px" id="genre"  class="mx-1" v-for="genre in item.genre_ids.slice(0,3)" v-bind:key="genre">{{getGenre(genre)}}</span>
-                        </v-row-->
                         <v-divider class="mx-4"></v-divider>
-                        <!--v-card-actions>
-                            <v-col cols="12" align="center">
-                                <v-btn color="yellow darken-3" rounded small dark @click="gotoDetails(item.id)" >See Details</v-btn>
-                            </v-col>
-                            <v-spacer></v-spacer>
-                        </v-card-actions-->
                     </v-card>
                 </v-col>
             </v-row>

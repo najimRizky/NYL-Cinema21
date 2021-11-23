@@ -26,7 +26,7 @@
                         
                         <v-card-title style="font-size: 14px; width: 100%; padding-top: 0px; cursor: pointer; margin-top: -20px" @click="gotoDetails(item.id)">{{getTitle(item.title)}} </v-card-title>
                         <v-card-subtitle style="font-size: 13px;">
-                            ({{toString(item.release_date).substring(0,4)}})
+                            {{(item.release_date)}}
                         </v-card-subtitle >
                         <v-divider class="mx-4"></v-divider>
                     </v-card>

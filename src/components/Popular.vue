@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="dataPopular != undefined">
         <v-container>
             <v-col cols="12" align="center">
                 <h2>Popular Movies</h2>
@@ -37,7 +37,7 @@
                             {{item.release_date.substring(0,4)}}
                         </v-card-subtitle>
                         <v-row class="ml-3">
-                            <span id="genre"  class="mx-1" v-for="genre in item.genre_ids.slice(0,3)" v-bind:key="genre" @click="gotoGenre(genre)">{{getGenre(genre)}}</span>
+                            <span id="genre" class="mx-1" v-for="genre in item.genre_ids.slice(0,3)" v-bind:key="genre" @click="gotoGenre(genre)">{{getGenre(genre)}}</span>
                         </v-row>
                         <v-divider class="mx-4"></v-divider>
                         <!--v-card-actions>
@@ -85,6 +85,7 @@ Vue.use(VueAxios, axios)
             Vue.axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=d7acd0104a45104a47c1fb7ba1304230&language=en-US')
             .then((hasil) => {
                 this.genreApi = hasil.data
+                console.log(this.genreApi.genres.length)
             })
         },
         methods:{
@@ -95,9 +96,9 @@ Vue.use(VueAxios, axios)
                 return val
             },
             getGenre(id2){
-                for(var i=0; i<this.genreApi.genres.length; i++){
+                for(let i=0; i< this.genreApi.genres.length; i++){
                     if(this.genreApi.genres[i].id == id2){
-                        return this.genreApi.genres[i].name 
+                        return this.genreApi.genres[i].name
                     }
                 }
             },
@@ -109,7 +110,7 @@ Vue.use(VueAxios, axios)
                 this.$router.push({name: 'Movdetails', params: {id: value}})
             },
             gotoGenre(value){
-                console.log(this.genreApi)
+                console.log(value)
                 for(var i=0; i<this.genreApi.genres.length; i++){
                     if(this.genreApi.genres[i].id == value){
                         value = this.genreApi.genres[i].name

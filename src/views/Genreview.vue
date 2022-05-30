@@ -13,7 +13,7 @@
                 </v-col>
             </v-row>
         </v-container>
-        <v-container fluid>
+        <v-container fluid v-if="dataUtamaGenre != undefined">
             <v-row>
                 <v-col lg="2" md="3" sm="4" cols="6" v-for="item in dataUtamaGenre.results" v-bind:key="item.id" >
                     <v-card height="550px" loading="true">

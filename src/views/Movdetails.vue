@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="dataMovie != undefined">
         <div :style="{'background-image': getBackdrop(dataMovie.backdrop_path), 'background-size' : '100%' }">                   
             <div :style="{'backdrop-filter': 'blur(10px)', 'background-color': 'rgba(0,0,0,0.4)'}">
                 <v-container id="movDetails" >
@@ -40,7 +40,7 @@
                             <v-row v-if="dataMovie.runtime != null">
                                 <p><v-icon color="green" class="mb-1"> mdi-clock-time-three</v-icon> {{dataMovie.runtime}}m</p>
                             </v-row>
-                            <v-row class="mb-3" v-if="dataTrailer.length != 0">
+                            <v-row class="mb-3" v-if="dataTrailer != undefined && dataTrailer.length != 0">
                                 <v-dialog v-model="dialog" width="600px">
                                     <template v-slot:activator="{ on, attrs }">
                                         <v-btn color="black" dark v-bind="attrs" v-on="on" small >See Trailer</v-btn>
@@ -64,8 +64,8 @@
                 
             </div>
         </div>
-
-        <v-container fluid v-if="dataMovie.production_companies != null">
+        
+        <v-container fluid v-if="dataMovie != undefined">
                 <v-row justify="center">
                     <v-col md="2" sm="12" v-for="item in dataMovie.production_companies" :key="item.id">
                         <v-col align="center">
@@ -78,13 +78,13 @@
                 </v-row>
         </v-container>
 
-        <div v-if="dataCast.cast.length !=0">
+        <div v-if="dataCast != undefined">
             <v-divider></v-divider>
             <v-col cols="12" align="center"><h2>Cast</h2></v-col>
             <div id="wrapper2">
                 <div v-for="item in dataCast.cast" v-bind:key="item.id">
                     <v-card width="140px" height="260px" class="mx-3">
-                        <v-img v-bind="attrs" v-on="on" v-bind:src="getPoster(item.profile_path)" height="190px" ></v-img>
+                        <v-img v-bind:src="getPoster(item.profile_path)" height="190px" ></v-img>
                         <p style="font-size: 12px; text-align: left; padding: 5px; margin-bottom: 0px"><b>{{item.name}}</b></p>
                         <p style="color: gray; font-size: 10px; padding: 5px; padding-top: 0px"> as {{item.character}}</p>
                     </v-card>
@@ -92,7 +92,7 @@
             </div>    
         </div>
 
-        <div style="padding: 20px" v-if="dataSimilar.total_results!=0">
+        <div style="padding: 20px" v-if="dataSimilar != undefined && dataSimilar.total_results !=0 ">
             <v-divider></v-divider>
             <v-col cols="12" align="center"><h2>Similar Movies</h2></v-col>
             <div id="wrapper">
@@ -150,7 +150,6 @@ Vue.use(VueAxios, axios)
             Vue.axios.get('https://api.themoviedb.org/3/movie/'+ this.idMovie +'/credits?api_key=d7acd0104a45104a47c1fb7ba1304230&language=en-US')
             .then((resp) => {
                 this.dataCast = resp.data
-                console.log(this.dataCast)
             })
         },
         methods:{
